@@ -1,0 +1,22 @@
+services:
+  mysql:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=yourrootpassword
+      - MYSQL_DATABASE=yourdatabase
+
+  frps:
+    image: ghcr.io/enoqv/frp/frps:latest
+    ports:
+      - 7000:7000
+    volumes:
+      - ./frps.toml:/app/frps.toml
+    command: /app/frps -c /app/frps.toml
+
+  frpc:
+    image: ghcr.io/enoqv/frp/frpc:latest
+    volumes:
+      - ./frpc.toml:/app/frpc.toml
+    command: /app/frpc -c /app/frpc.toml

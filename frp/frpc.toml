@@ -1,0 +1,9 @@
+serverAddr = "127.0.0.1"
+serverPort = 7000
+
+[[proxies]]
+name = "mysql"
+type = "stcp"
+secretKey = "yousecretkey"
+localIP = "127.0.0.1"
+localPort = 3306

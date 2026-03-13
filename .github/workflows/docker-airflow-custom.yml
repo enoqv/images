@@ -7,14 +7,11 @@ name: Docker (airflow-custom)
 
 on:
   push:
-    # airflow-custom/<version>, e.g. airflow-custom/3.1.8-1
     tags:
       - "airflow-custom/*"
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: ghcr.io
-  # airflow image name
   IMAGE_NAME: airflow-custom
 
 permissions:
@@ -32,7 +29,6 @@ jobs:
       -
         name: Prepare
         run: |
-          # GITHUB_REF_NAME is like airflow-custom/3.1.8-1
           VERSION=${GITHUB_REF_NAME#*/}  # take part after the first slash
           echo "VERSION=$VERSION" >> $GITHUB_ENV
       -
@@ -68,8 +64,6 @@ jobs:
         env:
           VERSION: ${{ env.VERSION }}
         with:
-          # Use repo root as bake source; airflow/docker-bake.hcl
-          # defines the airflow build config.
           source: .
           files: |
             ./airflow/docker-bake.hcl

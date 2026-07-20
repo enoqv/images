@@ -1,7 +1,7 @@
 ARG CADDY_VERSION
 
 FROM library/caddy:${CADDY_VERSION}-builder AS builder
-RUN xcaddy build --with github.com/caddy-dns/cloudflare \
+RUN xcaddy build --with github.com/caddy-dns/cloudflare@v0.2.4 \
  --with github.com/enoqv/caddy-l4@my-custom
 
 FROM caddy:${CADDY_VERSION}-alpine

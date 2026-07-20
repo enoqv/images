@@ -1,5 +1,5 @@
 variable "CADDY_VERSION" {
-  default = "2.10.2"
+  default = "2.11.4"
 }
 
 target "docker-metadata-action" {}
